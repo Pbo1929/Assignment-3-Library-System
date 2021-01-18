@@ -8,8 +8,10 @@ namespace Assignment_3_Library_System
     {
         private string Title;
         private string Author;
+        private string CoAuthor;
         private int Pages;
         private bool Borrowed;
+        private DateTime dueDate;
 
         public static int NumberOfBooks = 0;
 
@@ -17,6 +19,26 @@ namespace Assignment_3_Library_System
         {
             this.Title = Title;
             this.Author = Author;
+            this.Pages = Pages;
+            this.Borrowed = false;
+
+            NumberOfBooks = NumberOfBooks + 1;
+        }
+
+        public Book(string Title, int Pages)
+        {
+            this.Title = Title;
+            this.Pages = Pages;
+            this.Borrowed = false;
+
+            NumberOfBooks = NumberOfBooks + 1;
+        }
+
+        public Book(string Title, string Author, string CoAuthor, int Pages)
+        {
+            this.Title = Title;
+            this.Author = Author;
+            this.CoAuthor = CoAuthor;
             this.Pages = Pages;
             this.Borrowed = false;
 
@@ -33,9 +55,19 @@ namespace Assignment_3_Library_System
             return Author;
         }
 
+        public string GetCoAuthor()
+        {
+            return CoAuthor;
+        }
+
         public int GetPages()
         {
             return Pages;
+        }
+
+        public DateTime GetDueDate()
+        {
+            return dueDate;
         }
 
         public bool isBorrowed()
@@ -43,11 +75,33 @@ namespace Assignment_3_Library_System
             return Borrowed;
         }
 
+        public bool isOverdue()
+        {
+            //return true if overdue
+            //return false if not overdue
+
+            DateTime Today = DateTime.Now;
+            int Overdue = DateTime.Compare(Today, dueDate);
+            //-1 is book is not overdue
+            //0 is book on time
+            //+1 is book is overdue
+            
+            if(Overdue == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public void BorrowBook()
         {
             if (Borrowed == false)
             {
                 Borrowed = true;
+                dueDate = DateTime.Now.AddDays(7);
             }
             else
             {

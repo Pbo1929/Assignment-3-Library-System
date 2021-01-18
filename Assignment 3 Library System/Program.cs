@@ -20,6 +20,21 @@ namespace Assignment_3_Library_System
             harryPotter.ReturnBook();
             harryPotter.ReturnBook();
 
+            Book Bible = new Book("Bible", 105);
+            Console.WriteLine(Bible.GetTitle());
+            Console.WriteLine(Bible.GetAuthor());
+            Console.WriteLine(Bible.GetPages());
+
+            Book DoubleAuthor = new Book("Double Author", "Bob", "James", 111);
+            Console.WriteLine(DoubleAuthor.GetTitle());
+            Console.WriteLine(DoubleAuthor.GetAuthor());
+            Console.Write(DoubleAuthor.GetCoAuthor());
+            Console.WriteLine(DoubleAuthor.GetPages());
+
+            Console.WriteLine(harryPotter.isOverdue());
+
+                                               //train wreck
+            Console.WriteLine(harryPotter.GetDueDate().ToShortDateString());
         }
     }
 }
